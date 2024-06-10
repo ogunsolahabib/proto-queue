@@ -29,13 +29,13 @@ const initialState: MessagesState = {
 
 export const addMessage = createAsyncThunk<void, string, { rejectValue: string }>(
   'messages/addMessage',
-  async (message, { rejectWithValue }) => {
+  async (text, { rejectWithValue }) => {
     try {
       const itemsRef = collection(db, 'messages');
       const timestamp = Timestamp.now().toMillis();
 
 
-      await addDoc(itemsRef, { message, timestamp });
+      await addDoc(itemsRef, { text, timestamp });
     } catch (error: any) {
       return rejectWithValue(error.message);
     }

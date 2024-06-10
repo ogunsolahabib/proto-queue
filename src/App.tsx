@@ -34,11 +34,11 @@ function App() {
       dispatch(setMessages(
         querySnapshot.docs.map((doc) => {
           const data = doc.data();
-          const { timestamp } = data;
+          const { timestamp, text } = data;
           const now = Timestamp.now().toMillis();
           const timeLeft = timestamp ? now - timestamp : 0;
 
-          return ({ ...data, text: data.message, id: doc.id, timestamp, timeLeft })
+          return ({ ...data, text, timestamp, timeLeft, id: doc.id, })
         })
       ))
     })
