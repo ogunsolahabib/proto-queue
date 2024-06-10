@@ -13,7 +13,7 @@ export interface Message {
   text: string;
   id: string;
   timeLeft: number;
-  timestamp: Timestamp;
+  timestamp: number;
 }
 
 export interface MessagesState {

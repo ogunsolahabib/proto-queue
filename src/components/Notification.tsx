@@ -15,7 +15,6 @@ export default function Notification({
 }: {
     msg: Message;
     handleDelete: (id: string) => void;
-    index: number;
 }) {
 
     const [show, setShow] = useState(false);
