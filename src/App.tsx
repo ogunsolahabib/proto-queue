@@ -5,7 +5,7 @@ import {
   Timestamp,
 } from 'firebase/firestore';
 
-import { addMessage, deleteMessage, setMessages } from './redux/messagesSlice';
+import { Message, addMessage, deleteMessage, setMessages } from './redux/messagesSlice';
 
 
 import './App.css';
@@ -33,12 +33,12 @@ function App() {
     const unsubscribe = onSnapshot(itemsRef, (querySnapshot) => {
       dispatch(setMessages(
         querySnapshot.docs.map((doc) => {
-          const data = doc.data();
-          const { timestamp, text } = data;
+          const data = doc.data() as Message;
+          const { timestamp } = data;
           const now = Timestamp.now().toMillis();
           const timeLeft = timestamp ? now - timestamp : 0;
 
-          return ({ ...data, text, timestamp, timeLeft, id: doc.id, })
+          return ({ ...data, timeLeft, id: doc.id, })
         })
       ))
     })
