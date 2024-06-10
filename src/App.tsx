@@ -66,7 +66,7 @@ function App() {
     <div className="container">
       <div className="notifications-space">
         <div className="notifications-list">
-          {messages.length ? messages.sort((a, b) => b.timeLeft - a.timeLeft).map((item, index) => (
+          {messages.length ? messages.toSorted((a, b) => b.timeLeft - a.timeLeft).map((item, index) => (
             <Notification msg={item} key={item.id} handleDelete={handleDelete} index={index} />
           )) : null}
         </div>
